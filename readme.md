@@ -2,5 +2,5 @@
 
 Save it for the future.
 
-[internettimecapsule.net](internettimecapsule.net)
+[internettimecapsule.net](http://internettimecapsule.net)
 
