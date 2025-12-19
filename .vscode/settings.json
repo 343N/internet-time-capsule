@@ -1,3 +1,6 @@
 {
-    "terminal.integrated.defaultProfile.windows": "PowerShell venv"
+	"terminal.integrated.defaultProfile.windows": "PowerShell venv",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	}
 }
