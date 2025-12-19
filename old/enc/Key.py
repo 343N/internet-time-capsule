@@ -10,7 +10,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding as asym_paddi
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import serialization, padding, hashes
 
-from util.container import ENV
+from util.env import ENV
 
 log = logging.getLogger()
 
@@ -234,15 +234,17 @@ class KeyCommunicator():
     @classmethod
     def get_public_key(cls):
         r = requests.get(
-            f"http://{ENV.ENCRYPT_SERVER_HOST}:{ENV.ENCRYPT_SERVER_PORT}/key")
+                f"http://{ENV.ENCRYPT_SERVER_HOST}:{ENV.ENCRYPT_SERVER_PORT}/key")
+        
         
         if (r.status_code == 200):
             key = serialization.load_pem_public_key(r.content)
             return key
 
         return None
-
-    def send_aes_key(self, public_key: PUBLIC_KEY_TYPES, aes_key: AESKey, id: str):
+    
+    @staticmethod
+    def send_aes_key(public_key: PUBLIC_KEY_TYPES, aes_key: AESKey, id: str):
         if (public_key is None or 
             aes_key is None or
             id is None): return

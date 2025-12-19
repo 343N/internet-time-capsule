@@ -1,8 +1,8 @@
-import subprocess, sys
+import subprocess, sys, os
 
 apps = {
-    "enc": "encserver.py",
-    "backend": "backend.py"
+    "enc": ("encserver.py", "encserver"),
+    "backend": ("webserver.py", "backend")
 }
 
 def main():
@@ -10,6 +10,9 @@ def main():
     if (len(args) < 2): return
     launch = args[1]
     if (launch in apps):
-        subprocess.call(["py", apps[launch]])
+        os.chdir(apps[launch][1])
+        subprocess.call(["py", apps[launch][0]])
+    if (not launch):
+        print("You need to specify an application to run!")
 
 main()

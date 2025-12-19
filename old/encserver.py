@@ -23,7 +23,7 @@ log.info("\n#\n#\n# STARTING ENCRYPTION SERVER\n#\n#")
 # AND GIVES BACK. STORE AES KEY.
 ENV = Container.fromDict(os.environ)
 # ENV.printAll()
-MASTER_KEY = RSAKey.from_pem("keys/private_key.pem")
+MASTER_KEY = RSAKey.from_pem_file("keys/private_key.pem")
 
 
 
@@ -39,22 +39,26 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
             logging.info("Grabbing public key..")
             key = MASTER_KEY.public_key_to_pem()
             logging.info("Sending public key..")
+            self.send_response(200, "OK")
+            self.send_header('content-type', 'text/plain')
+            self.end_headers()
             self.wfile.write(key)
-            self.send_response(200, 'OK')
-            self.end_headers()
+            # self.send_response(200)
         else:
-            self.send_response(404, 'Not Found')
             self.end_headers()
+            self.send_response(404, 'Not Found')
+
+        return
 
 
     def do_POST(self):
         if self.path == '/key':
             print("Received an AES key")
-
+            self.send_response(200)
 
         else:
-            self.send_response(404, 'Not Found')
             self.end_headers()
+            self.send_response(404, 'Not Found')
         
 
 def run(server_class=http.server.HTTPServer, handler_class=RequestHandler):
