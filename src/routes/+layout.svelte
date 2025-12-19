@@ -6,9 +6,14 @@
 </script>
 
 <nav>
-	<a href="/">Home</a>
-	<a href="/about">About</a>
+	<a href="/"><h1 class="site-title">internet time capsule</h1></a>
+	<a href="/create">Create</a>
+	<a href="/browse">Browse</a>
 </nav>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-{@render children()}
+<main>
+
+	{@render children()}
+	
+</main>

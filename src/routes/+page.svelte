@@ -1,2 +1,6 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="video-container">
+    <video muted loop autoplay>
+        <source src="/video/comingsoon.mp4" type="video/mp4" />
+	</video>
+    <div class="video-overlay">Save it for the future.</div>
+</div>
