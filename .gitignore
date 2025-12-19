@@ -24,3 +24,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 pnpm*.yaml
+
+# videos
+static/video/encode
